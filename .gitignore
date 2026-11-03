@@ -1,0 +1,23 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+credentials/
+
+# Kubernetes local configuration
+kubeconfig
+kubeconfig.*
+*.kubeconfig
+
+# Temporary files
+*.log
+*.tmp
+*.bak
+
+# Editor
+.vscode/
+.idea/

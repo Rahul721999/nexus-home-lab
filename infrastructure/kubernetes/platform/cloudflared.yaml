@@ -1,0 +1,41 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+  namespace: cloudflare
+  labels:
+    app: cloudflared
+    app.kubernetes.io/part-of: nexus-home-lab
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: cloudflared
+
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+
+    spec:
+      containers:
+        - name: cloudflared
+          image: cloudflare/cloudflared:latest
+          imagePullPolicy: Always
+
+          args:
+            - tunnel
+            - --no-autoupdate
+            - --url
+            - http://traefik.traefik.svc.cluster.local:80
+
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
