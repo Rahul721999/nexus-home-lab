@@ -1,17 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: password-manager-service
+  name: hello-service
   namespace: apps
 spec:
   ingressClassName: traefik
   rules:
     - http:
         paths:
-          - path: /password-manager
+          - path: /hello
             pathType: Prefix
             backend:
               service:
-                name: password-manager-service
+                name: hello-service
                 port:
-                  number: 6966
+                  number: 8080
